@@ -1,24 +1,10 @@
-# Mlops Template Project
-
-
-
-## Getting started
-
-- créez votre répertoir sur le git lab de l'université. 
-- ajoutez une licence, un readme, un .gitignore pour python
-
-## Squelette du projet
-
-Afin de créer le squellete structuré et de manière automatique, dans votre projet clone sur votre machine ajouter un script ``template.py``
-``` python
-
 import os
 from pathlib import Path
 import logging
 
 logging.basicConfig(level=logging.INFO, format='[%(asctime)s]:%(message)s:')
 
-projet_name="mlProject" ## project name 
+projet_name="gridPower"
 
 list_of_files =[
     ".github/workflows/.gitkeep",
@@ -62,9 +48,4 @@ for filepath in list_of_files:
             logging.info(f"Creating empty file :  {filepath}")
     else:
         logging.info(f"{filename} is already exists")
-
-```
-
-
-
 
