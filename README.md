@@ -18,7 +18,7 @@ import logging
 
 logging.basicConfig(level=logging.INFO, format='[%(asctime)s]:%(message)s:')
 
-projet_name="mlProject" ## project name 
+projet_name="gridPower" ## project name 
 
 list_of_files =[
     ".github/workflows/.gitkeep",
@@ -101,8 +101,8 @@ with open('README.md','r',encoding="utf-8") as f:
 
 __version__= "0.0.0"
 
-REPO_NAME='e2e-mlops'
-AUTHOR_USER_NAME="Aghilas.Sini"
+REPO_NAME=''
+AUTHOR_USER_NAME="asini"
 SRC_REPO = "gridPower"
 AUTHOR_EMAIL="aghilas.sini@univ-lemans.fr"
 
@@ -135,6 +135,54 @@ En suit, excutez la commande suivante:
 ```bash
 pip install -r requirements.txt
 ```
+
+
+
+## Logging utilities
+
+Dans le dossier src/{projet_name} mettre à jour le script '__init__.py' avec le contenu suivant :
+
+```python
+
+import os
+import sys
+import logging
+
+
+logging_str = "[%(asctime)s:%(levelname)s: %(module)s: %(message)s]"
+
+log_dir="logs"
+log_filepath=os.path.join(log_dir,'running_logs.log')
+os.makedirs(log_dir,exist_ok=True)
+
+
+logging.basicConfig(
+
+    level=logging.INFO,
+    format=logging_str,
+
+    handlers=[
+        logging.FileHandler(log_filepath),
+        logging.StreamHandler(sys.stdout)
+
+
+    ]
+
+)
+
+logger= logging.getLogger('mlProjectLogger')
+
+```
+
+pour tester ce code, ouverez le script main.py:
+
+```python
+
+from gridPower import logger
+logger.info('welcome to mlops courses')
+```
+
+Pour les fonctonnalités fréquement utilisées seront implémentées dans utils/common.py
 
 
 
